@@ -43,4 +43,17 @@ int main(){
   	int b=1;
   	a=&b;
   /*************************************************************/ 
+  
+  /* 2018-08-13 13:13 */
+  vector<int>s;
+  s.push_back(1);
+  s.push_back(2);
+  
+  vector<int>::iterator iter=s.begin();
+  
+  while(iter!=s.end()){
+  	cout<<*iter;
+  	iter++;
+  }
+  /* */
 }
