@@ -19,37 +19,81 @@
 */
 
 //第一次运行 没有考虑 可以重复走（但不重复计数的）情况 
+//首先尽可能选择走的深 如果回退的话肯定浪费了一步 有多余的步数时才回退 如果有回退 需要考虑 先走哪边再走哪边 
+//回退的不知道怎么处理 
 #include<iostream>
 using namespace std;
  
-int dfs(int *a,int pos,int curl,int l,int n){
+int dfs(int *a,int *b,int pos,int curl,int l,int n){
 	if(curl>l){
 		return 0;
 	}
 	int max=0;
 	int cl=0;
 	//遍历 父节点为当前节点的节点 
+	int flag; 
 	for(int i=1;i<n;i++){
 		if(a[i]==pos)
 		{
 			cl=dfs(a,i,curl+1,l,n);
 			max=max>cl?max:cl;
+			flag=1;
 		}
 	}
-	
+	if(flag==0){  //已无子结点可走 尝试回退 
+ 		if(curl<l){
+ 			reverseDfs(a,b,pos,curl,l,n);
+		 }
+	}
 	return 1+max;
 } 
+
+int reverseDfs(int *a,int *b,int pos,int curl,int l,int n){
+	if(curl>l)
+		return 0;
+	
+}
 int main(){
 	int n; cin>>n;  //城市个数
 	int l; cin>>l; //步数
 	
 	int parent[n];  //父节点集
-	
+	int isvisited[n]={0}; 
 	for(int i=1;i<n;i++){
 		cin>>parent[i];   //输入父节点 
 	} 
 	
 	int count=1;  //已经游历一个城市
 	
-	cout<<dfs(parent,0,0,l,n); //当前节点为0 已走步数为0  
+	cout<<dfs(parent,isvisited,0,0,l,n); //当前节点为0 已走步数为0  
 } 
+///////////////////////////////////////////////////////////////////////////
+
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+ 
+void traversal(int n,int L,vector<int> &parent){
+    int maxlen=0;
+    vector<int> dp(n);
+    for(int i=0;i<n-1;i++){
+        dp[i+1]=dp[parent[i]]+1;
+        maxlen=max(maxlen,dp[i+1]);   //使用贪心算法计算最长链的长度
+    } 
+    int validpath=min(maxlen,L);
+    cout<<min(n,1+validpath+(L-validpath)/2);    
+}
+int main(){
+    int n,L;
+    cin>>n>>L;
+    vector<int> parent;
+    for(int i=0;i<n-1;i++){
+        int temp;
+        cin>>temp;
+        parent.push_back(temp);
+    }
+    traversal(n,L,parent);
+    return 0;
+}
+//////////////////////////////////////////////////////////////////////////// 
