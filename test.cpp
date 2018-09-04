@@ -38,10 +38,10 @@ int main(){
   /* 2018-07-21 21:59 home  for copy_list_with_random_pointer from linstcode niuke*/
   	//int a[][2];
   	//a[0][1]=1;
-  	int *a;
-  	a=NULL;
-  	int b=1;
-  	a=&b;
+  	//int *a;
+  //	a=NULL;
+  	//int b=1;
+  	//a=&b;
   /*************************************************************/ 
   
   /* 2018-08-13 13:13 
@@ -67,7 +67,42 @@ int main(){
    */
    
    /* 2018 8 15 13:40
-   */cout<<(4<3<1)<<endl; 
+   cout<<(4<3<1)<<endl; 
    printf("%d\n",'0');
-   printf("%d\n",'9');
+   printf("%d\n",'9');*/
+
+	//2018 8 28
+/*	vector<int>a=vector<int>(4,1);
+	a.insert(a.end(),10);
+	for(int i=0;i<a.size();i++){
+		cout<<a[i]<<" ";
+	}
+	cout<<a.size()/2;*/ 
+	/*
+	string s="abcd";
+	int a=s.find("b",2);
+	cout<<a<<endl;*/
+	//char *tt=(char*)malloc(4*sizeof(char));
+	//cout<<aiot(1);
+	/*string a="1234";
+	cout<<stoi(a);
+	cout<<to_string(1);
+	auto b=a;*/
+	
+	/*
+	char* string1="tencent2018";
+	cout<<sizeof(string1)<<endl;
+	cout<<sizeof(*string1)<<endl;
+	cout<<sizeof("tencent2018")<<endl;
+	char string2[100]="tencent2018";
+	cout<<sizeof(string2)<<endl;*/ 
+	
+/*
+    int m []={1,2,3,4,5,6,7,8,9,0};
+    int(*p)[4]=(int(*)[4])m;
+    cout<<p[1][2];
+    return 0;*/
+    char str[] = "";
+    cout<<sizeof(str);
+
 }
